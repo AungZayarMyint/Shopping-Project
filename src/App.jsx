@@ -1,42 +1,45 @@
-import { useReducer, useState } from "react";
-
-const firstReducer = (state,action) => {
-  switch(action.type) {
-    case "minus" :
-      return {...state, count : state.count - 1 }
-    case "plus" :
-      return {...state, count : state.count + 1}
-    case "updateKey" :
-      return {...state, key: action.payload}
-    default:
-      throw new Error();
-
-  }
-}
-
-const ACTIONS = {
-  PLUS : "plus",
-  MINUS : "minus",
-  UPDATE_KEY : "updateKey",
-};
+import { useEffect, useState } from "react";
 
 const App = () => {
-  const [state, dispatch] = useReducer(firstReducer,{key : "", count : 0, key: ""})
+  const [todos, setTodos] = useState([]);
+  useEffect((_) => {
+    fetchData();
+  },[]);
 
-  return (
-    <div className="App">
-      <input type="text" 
-      onChange={(e) => {dispatch({type : ACTIONS.UPDATE_KEY, payload : e.target.value})}}
-      />
-      <h1>Your key is - {state.key}</h1>
-      <button onClick={() => dispatch({type : "minus"})}
-      >
-        -
-      </button>
-      <span>{state.count}</span>
-      <button onClick={()=>dispatch({type : "plus"})}>+</button>
-    </div>
-  );
+  const fetchData = async () => {
+    const response = await fetch("https://jsonplaceholder.typicode.com/todos")
+    const data = await response.json();
+    setTodos(data);
+  }
+
+  return(
+  <>
+  <section>
+    <table>
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>title</th>
+          <th>completed</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {todos.map(todo=> (
+          <tr key={todo.id}>
+            <td>{todo.id}</td>
+            <td>{todo.title}</td>
+            {
+              todo.completed ? (<p>Done</p>) : (<p className="none">None</p>)
+            }
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </section>
+  </>
+  )
+
 }
 
 export default App;
