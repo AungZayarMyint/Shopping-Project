@@ -1,10 +1,11 @@
 import Main from "./Layout/Main";
+import ItemContextProvider from "./store/ItemContext";
 
 const App = () => {
   return (
-    <section>
+    <ItemContextProvider>
       <Main/>
-    </section>
+    </ItemContextProvider>
   )
 }
 

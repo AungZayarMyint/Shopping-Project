@@ -5,11 +5,16 @@ const CartItem = ({fruit}) => {
     <div className='card cart'>
         <div>
             <h4 className='card-title'>{fruit.name}</h4>
-            <p className='card-description'>{fruit.description}</p>
+            <p className='card-price'>$ {fruit.price}</p>
         </div>
         <div className='card-right-side'>
-            <p className='card-price'>$ {fruit.price}</p>
-            <input type="number" className='cart-input' min={1} max={5}/>
+          <p className='card-quantity'>x
+            <span>1</span>
+          </p>
+          <div className='quantity-ctr'>
+            <button className='quantity-btn m-ctr'>+</button>
+            <button className='quantity-btn'>-</button>
+          </div>
         </div>
     </div>
   )
