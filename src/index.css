@@ -109,6 +109,11 @@
   transform: translate(-50%, -50%);
 }
 
+.overflow-ctr{
+  height: 400px;  
+  overflow-y: scroll;
+}
+
 .cart{
   padding: 20px 20px;
 }
@@ -173,6 +178,10 @@
   margin-right: 8px;
 }
 
-button:hover{
+button:hover {
   cursor: pointer;
+}
+
+.no-item{
+  text-align: center;
 }

@@ -12,11 +12,11 @@ const Nav = (props) => {
     <nav className='nav'>
         <h2>Jonathan Shoppy</h2>
         <button onClick={props.showCartHandler}>
-            Card 
+            Cart 
             <span>({totalCart})</span>
         </button>
     </nav>
     )
 }
 
-export default Nav
+export default Nav;
